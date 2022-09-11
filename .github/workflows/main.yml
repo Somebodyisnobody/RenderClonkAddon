@@ -47,5 +47,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: RenderClonkAddon_v_2_3.zip
-          path: generated-docs.zip
+          path: RenderClonkAddon_v_2_3
           
