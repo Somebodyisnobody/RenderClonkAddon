@@ -49,11 +49,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: RenderClonkAddon_v_2_3
-          path: RenderClonkAddon_v_2_3
+          path: output
           
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: RenderClonkAddon_v_2_3
+          files: output
+          name: "RenderClonkAddon v2.3"
           
