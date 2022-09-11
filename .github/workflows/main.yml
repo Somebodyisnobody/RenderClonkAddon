@@ -42,10 +42,12 @@ jobs:
           mv *license.txt RenderClonkAddon_v_2_3
           mv LICENSE RenderClonkAddon_v_2_3
           mv RenderClonk.blend RenderClonkAddon_v_2_3
+          mkdir output
+          mv RenderClonkAddon_v_2_3 output
       
       - name: "Publish zipped Main Artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: RenderClonkAddon_v_2_3.zip
+          name: RenderClonkAddon_v_2_3
           path: RenderClonkAddon_v_2_3
           
