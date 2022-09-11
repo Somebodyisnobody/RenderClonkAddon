@@ -51,3 +51,9 @@ jobs:
           name: RenderClonkAddon_v_2_3
           path: RenderClonkAddon_v_2_3
           
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: RenderClonkAddon_v_2_3
+          
