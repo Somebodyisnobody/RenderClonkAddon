@@ -44,25 +44,25 @@ jobs:
           mv LICENSE VersionReleaseArtifacts
           mv RenderClonk.blend VersionReleaseArtifacts
           mkdir output
-          echo "FormattedReleaseVersion: ${FORMATTED_RELEASE_VERSION}"
           mv VersionReleaseArtifacts output/RenderClonkAddon_${FORMATTED_RELEASE_VERSION}
+          tree output
       
       - name: "Publish main artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: RenderClonkAddon_v_2_3
+          name: RenderClonkAddon_${FORMATTED_RELEASE_VERSION}
           path: output
           
       - name: "Collect release assets"
         run: |
           cd output
-          zip -q -r ../RenderClonkAddon_v_2_3.zip *
+          zip -q -r ../RenderClonkAddon_${FORMATTED_RELEASE_VERSION}.zip *
           
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            RenderClonkAddon_v_2_3.zip
-          name: "RenderClonkAddon v2.3"
+            RenderClonkAddon_${FORMATTED_RELEASE_VERSION}.zip
+          name: "RenderClonkAddon ${RELEASE_VERSION}"
           
