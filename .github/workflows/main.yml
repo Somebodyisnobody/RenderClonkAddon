@@ -31,21 +31,21 @@ jobs:
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
           
           RELEASE_VERSION=${GITHUB_REF#refs/*/}
-          DB_NAME="${RELEASE_VERSION//./_}"
-          echo $DB_NAME
-          DB_NAME="${DB_NAME//v/v_}"
-          echo $DB_NAME
+          FORMATTED_RELEASE_VERSION="${RELEASE_VERSION//./_}"
+          FORMATTED_RELEASE_VERSION="${FORMATTED_RELEASE_VERSION//v/v_}"
+          echo "FORMATTED_RELEASE_VERSION=${FORMATTED_RELEASE_VERSION}"
       
       - name: "Collect artifacts"
         run: |
-          mkdir RenderClonkAddon_v_2_3
-          mv *.py RenderClonkAddon_v_2_3
-          mv Clonk.png RenderClonkAddon_v_2_3
-          mv *license.txt RenderClonkAddon_v_2_3
-          mv LICENSE RenderClonkAddon_v_2_3
-          mv RenderClonk.blend RenderClonkAddon_v_2_3
+          mkdir VersionReleaseArtifacts
+          mv *.py VersionReleaseArtifacts
+          mv Clonk.png VersionReleaseArtifacts
+          mv *license.txt VersionReleaseArtifacts
+          mv LICENSE VersionReleaseArtifacts
+          mv RenderClonk.blend VersionReleaseArtifacts
           mkdir output
-          mv RenderClonkAddon_v_2_3 output
+          echo "FormattedReleaseVersion: ${FORMATTED_RELEASE_VERSION}"
+          mv VersionReleaseArtifacts output/RenderClonkAddon_${FORMATTED_RELEASE_VERSION}
       
       - name: "Publish main artifact"
         uses: actions/upload-artifact@v3
