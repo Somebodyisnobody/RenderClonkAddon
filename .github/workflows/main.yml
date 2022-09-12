@@ -45,11 +45,16 @@ jobs:
           mkdir output
           mv RenderClonkAddon_v_2_3 output
       
-      - name: "Publish zipped Main Artifact"
+      - name: "Publish main artifact"
         uses: actions/upload-artifact@v3
         with:
           name: RenderClonkAddon_v_2_3
           path: output
+          
+      - name: "Collect release assets"
+        run: |
+          cd output
+          zip -q -0 -r ../RenderClonkAddon_v_2_3.zip *
           
       - name: Release
         uses: softprops/action-gh-release@v1
