@@ -61,6 +61,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            output/
+            RenderClonkAddon_v_2_3.zip
           name: "RenderClonkAddon v2.3"
           
