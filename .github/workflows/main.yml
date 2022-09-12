@@ -50,19 +50,19 @@ jobs:
       - name: "Publish main artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: RenderClonkAddon_${FORMATTED_RELEASE_VERSION}
+          name: RenderClonkAddon_$FORMATTED_RELEASE_VERSION
           path: output
           
       - name: "Collect release assets"
         run: |
           cd output
-          zip -q -r ../RenderClonkAddon_${FORMATTED_RELEASE_VERSION}.zip *
+          zip -q -r ../RenderClonkAddon_$FORMATTED_RELEASE_VERSION.zip *
           
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            RenderClonkAddon_${FORMATTED_RELEASE_VERSION}.zip
-          name: "RenderClonkAddon ${RELEASE_VERSION}"
+            RenderClonkAddon_$FORMATTED_RELEASE_VERSION.zip
+          name: "RenderClonkAddon $RELEASE_VERSION"
           
